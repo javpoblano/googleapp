@@ -1,0 +1,17 @@
+//Limitar la busqueda a videos que se pueden ver fuera de youtube
+//Alta calidad de videos
+//Advertencia al salir del host
+//Vista horizontal
+//arreglar imagenes
+//[Error cuando se actualiza un host con otro host abierto se agregan canciones en ambos] cambiado emit all por emit socket
+//Mostrar el nombre y duracion de los videos
+Lista de todos los conectados
+
+Borrar las que ya pasaron
+info del video
+Notificacion burbuja para usuarios
+current video
+color de la app dependiendo del avatar
+hover state boton play
+custom scroll footer
+

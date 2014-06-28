@@ -1,0 +1,92 @@
+extends layout
+
+block content
+	div.main.host
+		
+		.large-3.columns.small-12
+			#buscar
+				form#buscador
+					.row.collapse
+						.small-10.large-10.columns
+							input#input-text(type="text" placeholder="Buscar canciones")
+						.small-2.large-2.columns
+							a#search.button.postfix(href="#")
+								i.fi-magnifying-glass
+			#resultado
+
+				#moreVids
+					a#retrieve.large.expand.hide(href="#") Mostrar mas videos
+
+		.large-9.columns.small-12
+			#titulo
+				h1 Host
+
+			#player
+			div#vacio.hide
+				h2.text-center Agrega canciones para inicar el playlist
+
+	footer
+		#lista-reproduccion
+		#conectados.hide
+					ul
+		
+	script(src="/js/jquery.js")
+	script(src="/js/search.js")
+	script(src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript")
+	script(src="https://apis.google.com/js/client.js" type="text/javascript")
+	script(src="/socket.io/socket.io.js")
+
+	script(src="/js/host.js")
+	script(src="/js/common.js")
+	script(type="text/javascript").
+		var player;
+
+		function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+				height: '480',
+				width: '853',
+				videoId: Host.videoActual +"",
+				events: {
+					'onReady': onPlayerReady,
+					'onStateChange': onPlayerStateChange
+				}
+			});
+		}
+
+		function onPlayerReady(event) {
+			event.target.playVideo();
+		}
+
+		var done = false;
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.ENDED) {
+				nextVideo()
+			}
+		}
+
+		function stopVideo() {
+			player.stopVideo();
+		}
+
+		function nextVideo(){
+			if(Host.cola.length < 2){
+				
+			}
+
+			else{
+
+			}
+			Host.cola.splice(0, 1)
+			player.loadVideoById(Host.cola[0].id, "large")
+		}
+
+		function confirmExit(){
+			return "Haz intentado salir de esta lista de reproduccion. La lista actual se perdera";
+		}
+
+	script(type='text/javascript').
+		$(document).ready(function(){
+			Host.iniciar();
+			window.onbeforeunload = confirmExit;
+		})
+

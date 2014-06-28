@@ -1,0 +1,60 @@
+extends layout
+
+block content
+	div.seleccion
+		.dialogo.large-8.colums.small-12.large-centered
+			h2.text-center Elige un avatar.
+			p.text-center 
+				span.avatar.radius.red(data-name="red")
+				span.avatar.radius.blue(data-name="blue")
+				span.avatar.radius.green(data-name="green")
+				span.avatar.radius.yellow(data-name="yellow")
+	div.main.playlist
+		.large-12.columns.small-12
+				#titulo
+					h1 Playlist
+
+				#buscar
+					form#buscador
+						.row.collapse
+							.small-10.large-10.columns
+								input#input-text(type="text" placeholder="Buscar canciones")
+							.small-2.large-2.columns
+								a#search.button.postfix(href="#")
+									i.fi-magnifying-glass
+
+
+				#resultado
+
+				#moreVids
+					a#retrieve.large.expand.hide(href="#") Mostrar mas videos
+	
+	footer
+		#lista-reproduccion
+		#conectados.hide
+					ul
+	
+	//system
+	script(src="/js/vendor/jquery.js")
+	script(src="/js/vendor/fastclick.js")
+	script(src="/js/foundation.min.js")
+
+	script(src="/socket.io/socket.io.js")
+	script(src="/js/search.js")
+	script(src="/js/common.js")
+
+	script(src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript")
+	//
+	
+	script(src="/js/queue.js")
+	script(type='text/javascript').
+		$(document).foundation();
+		$(document).ready(function(){
+			Playlist.iniciar();
+			window.addEventListener('load', function() {new FastClick(document.body);}, false); 
+			$(".avatar").click(function(){
+				Playlist.enviarConexion($(this).attr("data-name"));
+				$(".seleccion").addClass("hide")
+				//$(".main").removeClass("hide")
+			})
+		})

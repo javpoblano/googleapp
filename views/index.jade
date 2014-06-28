@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	.row
+		.large-8.columns.large-centered
+			#opciones.row
+				.large-12.columns
+					h2.text-center Partyfy
+
+				.large-6.columns
+					.panel
+						h3: a(href="/host") Crear playlist
+						p Sé el host de la fiesta
+
+				.large-6.columns
+					.panel
+						h3: a(href="/playlist") Unirse a playlist
+						p Agrega canciones a un playlist
+
+
+	script(src="/js/jquery.js")
+	script(src="/js/main.js")
